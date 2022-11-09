@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
-    private float rangeOfCords = 1f;
+    private float rangeOfCords = 8f;
 
     private int wave = 1;
     void Start()
@@ -36,7 +36,7 @@ public class SpawnManager : MonoBehaviour
     {
         float xRange = Random.Range(-rangeOfCords, rangeOfCords);
         float zRange = Random.Range(-rangeOfCords, rangeOfCords);
-        Vector3 spawnPos = new Vector3(xRange, 0, zRange);
+        Vector3 spawnPos = new Vector3(xRange, 1, zRange);
         return spawnPos;
     }
 }
