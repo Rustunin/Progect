@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float playerSpeed;
+    public float rotateSpeed;
+    private float verticalInput;
+    private float horizontalInput;
 
     void Start()
     {
@@ -14,6 +17,9 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        transform.Translate(Vector3.forward * playerSpeed);
+        verticalInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed * verticalInput);
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * horizontalInput);
     }
 }
