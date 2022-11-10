@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class ShotToClick : MonoBehaviour
 {
-    public GameObject Bullet;
-    public float Power;
-    void Update()
+    public int ammo;//Количество Патронов в магазине
+    public int allAmmo;//Количество всех патронов в инвенторе
+
+    public float ShootSpeed; //Скорость стрельбы
+    public float ReloadSpeed; //Скорость перезарядки 
+
+    public float ReloadTimer = 0.0f; //Время перезарядки
+    public float ShootTimer = 0.0f; //Время выстрела
+
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))//При нажатии на Левую Кнопку Мыши
         {
-            GameObject b = Instantiate(Bullet, transform.position, transform.rotation);
-            b.GetComponent<Rigidbody>().AddForce(Vector3.forward * Power, ForceMode.Impulse);
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Physics.Raycast(transform.position, fwd, 10);//Запускаем луч вперёд
         }
     }
 }
