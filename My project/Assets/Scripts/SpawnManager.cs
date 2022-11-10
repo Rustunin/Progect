@@ -5,11 +5,12 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
-    private float rangeOfCords = 1f;
+    public List<Transform> spawnPoints;
 
     private int wave = 1;
     void Start()
     {
+        spawnPoints = new List<Transform>(spawnPoints);
         SpawnEnemy(wave);
     }
 
@@ -24,19 +25,13 @@ public class SpawnManager : MonoBehaviour
     }
     void SpawnEnemy(int value)
     {
-        int Ind = Random.Range(0, enemyPrefab.Length);
+        int Ind = Random.Range(0, spawnPoints.Count);
         for(int i = 0; i < value; i++)
         {
-            Instantiate(enemyPrefab[Ind], RandomSpawnPos(), enemyPrefab[Ind].transform.rotation);
+            Instantiate(enemyPrefab[Ind], spawnPoints[Ind].transform.position, enemyPrefab[Ind].transform.rotation);
+            spawnPoints.RemoveAt(Ind);
         }
     }
 
 
-    Vector3 RandomSpawnPos()
-    {
-        float xRange = Random.Range(-rangeOfCords, rangeOfCords);
-        float zRange = Random.Range(-rangeOfCords, rangeOfCords);
-        Vector3 spawnPos = new Vector3(xRange, 0, zRange);
-        return spawnPos;
-    }
 }
