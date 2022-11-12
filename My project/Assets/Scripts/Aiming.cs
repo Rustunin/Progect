@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Aiming : MonoBehaviour
 {
     public Animator animator;
     public Camera camera;
     Coroutine zoomCoroutine;
+    public Image crosshair;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
+            crosshair.enabled = false;
             animator.SetBool("aim", true);
 
             if (zoomCoroutine != null)
@@ -21,6 +24,7 @@ public class Aiming : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(1))
         {
+            crosshair.enabled = true;
             animator.SetBool("aim", false);
 
             if (zoomCoroutine != null)
