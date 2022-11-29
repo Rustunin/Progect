@@ -12,15 +12,10 @@ public class Weapon : MonoBehaviour
     public float shootForce;
     public float spread;
 
-    private void Start()
-    {
-        Console.WriteLine("HelloWorld");
-    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-            Shoot();
-        
+            Shoot();        
     }
 
     private void Shoot()
