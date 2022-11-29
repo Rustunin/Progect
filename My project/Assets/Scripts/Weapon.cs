@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,15 @@ public class Weapon : MonoBehaviour
     public float shootForce;
     public float spread;
 
+    private void Start()
+    {
+        Console.WriteLine("HelloWorld");
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
             Shoot();
+        
     }
 
     private void Shoot()
@@ -41,4 +47,5 @@ public class Weapon : MonoBehaviour
 
         currentBullet.GetComponent<Rigidbody>().AddForce(dirWithSpread.normalized * shootForce, ForceMode.Impulse);
     }
+
 }
